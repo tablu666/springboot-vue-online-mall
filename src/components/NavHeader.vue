@@ -131,13 +131,11 @@
             },
             getProductList() {
                 this.axios.get('/products', {
-                    // params:{
-                    //     categoryId:''
-                    // }
-                }).then((res) => {
-                    if (res.list.length > 5) {
-                        this.productList = res.list.slice(0, 5);
+                    params:{
+                        pageSize:5
                     }
+                }).then((res) => {
+                    this.productList = res.list;
                 })
             },
             goToCart() {
@@ -254,6 +252,7 @@
                             box-shadow: 0 7px 6px 0 rgba(0, 0, 0, 0.11);
                             z-index: 10;
                             transition: all .5s;
+                            background-color: #ffffff;
 
                             .category {
                                 position: relative;

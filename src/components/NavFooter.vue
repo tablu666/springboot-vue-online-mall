@@ -26,7 +26,7 @@
         border: 4px solid $colorA;
         background-color: #f6f9fa;
         color: $colorB;
-        font-size: $fontI;
+        font-size: 16px;
         text-align: center;
 
         .footer-logo {
