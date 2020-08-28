@@ -13,7 +13,7 @@
                     <a href="javascript:;" v-if="username">{{username}}</a>
                     <a href="javascript:;" v-if="!username" @click="login">登录</a>
                     <a href="javascript:;" v-if="username">我的订单</a>
-                    <a href="javascript:;" v-if="!username">注册</a>
+                    <a href="javascript:;" v-if="!username" @click="register">注册</a>
                     <a href="javascript:;" class="user-cart" @click="goToCart"><span class="icon-cart"></span>购物车</a>
                 </div>
             </div>
@@ -111,20 +111,23 @@
                 productList: []
             }
         },
-        filters:{
-          currency(money) {
-              if (!money) {
-                  return 0.00;
-              }
-              return '￥' + money.toFixed(2) + '元';
-          }
+        filters: {
+            currency(money) {
+                if (!money) {
+                    return 0.00;
+                }
+                return '￥' + money.toFixed(2);
+            }
         },
         mounted() {
             this.getProductList();
         },
         methods: {
             login() {
-              this.$router.push('/login');
+                this.$router.push('/login');
+            },
+            register() {
+                this.$router.push('/register');
             },
             getProductList() {
                 this.axios.get('/products', {
@@ -152,7 +155,7 @@
         .nav-top-bar {
             height: 39px;
             line-height: 39px;
-            background-color: #505050;
+            background-color: $colorB;
             color: #d5d5d5;
 
             .container {
@@ -220,7 +223,7 @@
 
                     .item-menu {
                         display: inline-block;
-                        color: #505050;
+                        color: $colorB;
                         font-weight: bold;
                         font-size: 16px;
                         line-height: 112px;

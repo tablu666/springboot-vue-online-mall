@@ -12,6 +12,7 @@ import OrderPayment from './pages/orderPayment'
 import VerifyCodePay from './pages/verifyCodePay'
 import Seller from './pages/seller'
 import Management from './pages/management'
+import Register from './pages/register'
 
 Vue.use(Router);
 
@@ -43,6 +44,10 @@ export default new Router({
                     path: '/management',
                     name: 'management',
                     component: Management
+                }, {
+                    path: '/register',
+                    name: 'register',
+                    component: Register
                 }
             ]
         },
