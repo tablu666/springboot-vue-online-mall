@@ -13,6 +13,7 @@ import VerifyCodePay from './pages/verifyCodePay'
 import Seller from './pages/seller'
 import Management from './pages/management'
 import Register from './pages/register'
+import Category from './pages/category'
 
 Vue.use(Router);
 
@@ -48,6 +49,10 @@ export default new Router({
                     path: '/register',
                     name: 'register',
                     component: Register
+                }, {
+                    path: '/category',
+                    name: 'category',
+                    component: Category
                 }
             ]
         },

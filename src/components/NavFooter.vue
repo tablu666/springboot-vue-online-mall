@@ -1,7 +1,7 @@
 <template>
     <div class="footer">
         <div class="footer-logo">
-            <img src="/imgs/logo-footer.png" alt="">
+            <a href="/#/index"><img src="/imgs/logo-footer.png" alt=""></a>
             <p>美剧周边站</p>
         </div>
         <div class="footer-link">
@@ -23,11 +23,11 @@
 
     .footer {
         height: 234px;
-        border: 4px solid $colorA;
         background-color: #f6f9fa;
         color: $colorB;
         font-size: 16px;
         text-align: center;
+        padding: 2px;
 
         .footer-logo {
             margin-top: 46px;
