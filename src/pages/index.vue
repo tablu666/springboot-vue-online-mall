@@ -2,6 +2,66 @@
     <div class="index">
         <div class="container">
             <div class="swiper-box">
+                <div class="nav-menu">
+                    <ul class="menu-wrap">
+                        <li class="menu-item">
+                            <a href="javascript:;">蓝光珍藏</a>
+                            <div class="children">
+                                <ul v-for="(item, i) in menuList" v-bind:key="i">
+                                    <li v-for="(sub, j) in item" v-bind:key="j">
+                                        <a v-bind:href="sub ? '/#/product/' + sub.id : ''">
+                                            <img v-bind:src="sub ? sub.mainImage : '/imgs/product/gift-card.jpg'"
+                                                 :alt="sub.subtitle">
+                                            {{sub? sub.name : '礼品卡'}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:;">数码电子</a>
+                            <div class="children">
+                                <ul v-for="(item, i) in menuList2" v-bind:key="i">
+                                    <li v-for="(sub, j) in item" v-bind:key="j">
+                                        <a v-bind:href="sub ? '/#/product/' + sub.id : ''">
+                                            <img v-bind:src="sub ? sub.mainImage : '/imgs/product/gift-card.jpg'"
+                                                 :alt="sub.subtitle">
+                                            {{sub? sub.name : '礼品卡'}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:;">玩偶手办</a>
+                            <div class="children">
+                                <ul v-for="(item, i) in menuList3" v-bind:key="i">
+                                    <li v-for="(sub, j) in item" v-bind:key="j">
+                                        <a v-bind:href="sub ? '/#/product/' + sub.id : ''">
+                                            <img v-bind:src="sub ? sub.mainImage : '/imgs/product/gift-card.jpg'"
+                                                 :alt="sub.subtitle">
+                                            {{sub? sub.name : '礼品卡'}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="menu-item">
+                            <a href="javascript:;">服饰日用</a>
+                            <div class="children">
+                                <ul v-for="(item, i) in menuList4" v-bind:key="i">
+                                    <li v-for="(sub, j) in item" v-bind:key="j">
+                                        <a v-bind:href="sub ? '/#/product/' + sub.id : ''">
+                                            <img v-bind:src="sub ? sub.mainImage : '/imgs/product/gift-card.jpg'"
+                                                 :alt="sub.subtitle">
+                                            {{sub? sub.name : '礼品卡'}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
                 <swiper v-bind:options="swiperOptions">
                     <swiper-slide v-for="(item, index) in slideList" v-bind:key="index">
                         <a v-bind:href="'/#/product/' + item.id"><img v-bind:src="item.img" alt=""/></a>
@@ -13,8 +73,16 @@
                     <div class="swiper-button-next" slot="button-next"></div>
                 </swiper>
             </div>
-            <div class="ads-box"></div>
-            <div class="banner"></div>
+            <div class="ads-box">
+                <a v-bind:href="'/#/product/' + item.id" v-for="(item, index) in adsList" v-bind:key="index">
+                    <img v-bind:src="item.img" alt="">
+                </a>
+            </div>
+            <div class="banner">
+                <a href="javascript:;">
+                    <img src="/imgs/banner-index.jpg" alt="美剧周边站 Dream And Passion">
+                </a>
+            </div>
             <div class="product-box"></div>
         </div>
         <service-bar></service-bar>
@@ -46,7 +114,7 @@
                     },
                     pagination: {
                         el: '.swiper-pagination',
-                        clickable:true
+                        clickable: true
                     },
                     navigation: {
                         nextEl: '.swiper-button-next',
@@ -74,20 +142,247 @@
                         id: '5',
                         img: '/imgs/slider/slide-5.jpg'
                     }
+                ],
+                menuList: [
+                    [], [], []
+                ],
+                menuList2: [
+                    [], [], [],
+                ],
+                menuList3: [
+                    [], [], [],
+                ],
+                menuList4: [
+                    [], [], [],
+                ],
+                adsList: [
+                    {
+                        id: 1,
+                        img: '/imgs/ads/ads-1.jpg'
+                    },
+                    {
+                        id: 2,
+                        img: '/imgs/ads/ads-2.jpg'
+                    },
+                    {
+                        id: 3,
+                        img: '/imgs/ads/ads-3.jpg'
+                    },
+                    {
+                        id: 5,
+                        img: '/imgs/ads/ads-4.jpg'
+                    },
                 ]
+            }
+        },
+        mounted() {
+            this.getMenuList();
+            this.getMenuList2();
+            this.getMenuList3();
+            this.getMenuList4();
+        },
+        methods: {
+            getMenuList() {
+                this.axios.get('/products', {
+                    params: {
+                        categoryId: 100002
+                    }
+                }).then((res) => {
+                    // let temp = new Array(4);
+                    let temp = [];
+                    let cnt = 0;
+                    let len = this.menuList.length;
+                    for (let i = 0; i < len; i++) {
+                        let temp2 = [0, 0, 0];
+                        for (let j = 0; j < len && cnt < res.list.length; j++) {
+                            temp2[j] = res.list[cnt++];
+                        }
+                        temp[i] = temp2;
+                    }
+                    this.menuList = temp;
+                });
+                // console.log(this);
+            },
+            getMenuList2() {
+                this.axios.get('/products', {
+                    params: {
+                        categoryId: 100003
+                    }
+                }).then((res) => {
+                    let temp = [];
+                    let cnt = 0;
+                    let len = this.menuList2.length;
+                    for (let i = 0; i < len; i++) {
+                        let temp2 = [0, 0, 0];
+                        for (let j = 0; j < len && cnt < res.list.length; j++) {
+                            temp2[j] = res.list[cnt++];
+                        }
+                        temp[i] = temp2;
+                    }
+                    this.menuList2 = temp;
+                });
+            },
+            getMenuList3() {
+                this.axios.get('/products', {
+                    params: {
+                        categoryId: 100004
+                    }
+                }).then((res) => {
+                    let temp = [];
+                    let cnt = 0;
+                    let len = this.menuList3.length;
+                    for (let i = 0; i < len; i++) {
+                        let temp2 = [0, 0, 0];
+                        for (let j = 0; j < len && cnt < res.list.length; j++) {
+                            temp2[j] = res.list[cnt++];
+                        }
+                        temp[i] = temp2;
+                    }
+                    this.menuList3 = temp;
+                });
+            },
+            getMenuList4() {
+                this.axios.get('/products', {
+                    params: {
+                        categoryId: 100005
+                    }
+                }).then((res) => {
+                    let temp = [];
+                    let cnt = 0;
+                    let len = this.menuList4.length;
+                    for (let i = 0; i < len; i++) {
+                        let temp2 = [0, 0, 0];
+                        for (let j = 0; j < len && cnt < res.list.length; j++) {
+                            temp2[j] = res.list[cnt++];
+                        }
+                        temp[i] = temp2;
+                    }
+                    this.menuList4 = temp;
+                });
             }
         }
     }
 </script>
 <style lang="scss">
+    @import "./../assets/scss/config.scss";
+    @import "./../assets/scss/mixin.scss";
+
     .index {
         .swiper-box {
+            .nav-menu {
+                position: absolute;
+                width: 200px;
+                height: 451px;
+                z-index: 9;
+                padding: 26px 0;
+                background-color: #50505080;
+                box-sizing: border-box;
+
+                .menu-wrap {
+                    .menu-item {
+                        height: 100px;
+                        line-height: 100px;
+
+                        a {
+                            position: relative;
+                            display: block;
+                            font-size: 16px;
+                            color: #ffffff;
+                            padding-left: 30px;
+
+                            &:after {
+                                position: absolute;
+                                right: 30px;
+                                top: 41.5px;
+                                content: ' ';
+                                @include backgroundImage(10px, 15px, '/imgs/icon-arrow.png');
+                            }
+                        }
+
+                        &:hover {
+                            background-color: $colorA;
+
+                            .children {
+                                display: block;
+                            }
+                        }
+
+                        .children {
+                            display: none;
+                            width: 1026px;
+                            height: 451px;
+                            background-color: $colorG;
+                            position: absolute;
+                            top: 0;
+                            left: 200px;
+                            border: 1px solid $colorH;
+
+                            ul {
+                                display: flex;
+                                justify-content: space-between;
+                                height: 150px;
+
+                                li {
+                                    height: 150px;
+                                    line-height: 150px;
+                                    flex: 1;
+                                    padding-left: 23px;
+                                }
+
+                                a {
+                                    color: $colorB;
+                                    font-size: 12px;
+                                }
+
+                                img {
+                                    width: 120px;
+                                    height: 100px;
+                                    vertical-align: middle;
+                                    margin-right: 15px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
             .swiper-container {
                 height: 451px;
+
+                .swiper-button-prev {
+                    left: 210px;
+                }
 
                 img {
                     width: 100%;
                     height: 100%;
+                }
+            }
+        }
+
+        .ads-box {
+            @include flex();
+            margin-top: 15px;
+            margin-bottom: 15px;
+
+            a {
+                width: 296px;
+                height: 167px;
+
+                img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+        }
+
+        .banner {
+            margin-bottom: 50px;
+
+            a {
+                img {
+                    width: 1226px;
+                    height: 130px;
                 }
             }
         }

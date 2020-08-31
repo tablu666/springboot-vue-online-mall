@@ -6,8 +6,8 @@
                     <a href="javascript:;">美剧周边站</a>
                     <a href="javascript:;">Mall</a>
                     <a href="javascript:;">American TV Series</a>
-                    <a href="javascript:;">物流服务</a>
-                    <a href="javascript:;">协议规则</a>
+                    <a href="javascript:;">跨境物流服务</a>
+                    <a href="javascript:;">Thanks to the Internet</a>
                 </div>
                 <div class="top-bar-user">
                     <a href="javascript:;" v-if="username">{{username}}</a>
