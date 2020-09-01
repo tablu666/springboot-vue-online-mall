@@ -4,18 +4,18 @@
             <div class="mask"></div>
             <div class="model-dialog">
                 <div class="modal-header">
-                    <span>系统提示</span>
+                    <span>{{title}}</span>
                     <a href="javascript:;" class="icon-close" v-on:click="$emit('cancel')"></a>
                 </div>
                 <div class="modal-body">
                     <slot name="body"></slot>
                 </div>
                 <div class="modal-footer">
-                    <a href="javascript:;" class="btn" v-if="btnType===1" v-on:click="$emit('submit')">确定</a>
-                    <a href="javascript:;" class="btn" v-if="btnType===2" v-on:click="$emit('cancel')">取消</a>
-                    <div class="btn-group" v-else>
-                        <a href="javascript:;" class="btn" v-on:click="$emit('submit')">确定</a>
-                        <a href="javascript:;" class="btn" v-on:click="$emit('cancel')">取消</a>
+                    <a href="javascript:;" class="btn" v-if="btnType==1" v-on:click="$emit('submit')">{{confirmText}}</a>
+                    <a href="javascript:;" class="btn" v-if="btnType==2" v-on:click="$emit('cancel')">{{cancelText}}</a>
+                    <div class="btn-group" v-if="btnType==3">
+                        <a href="javascript:;" class="btn" v-on:click="$emit('submit')">{{confirmText}}</a>
+                        <a href="javascript:;" class="btn" v-on:click="$emit('cancel')">{{cancelText}}</a>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
             },
             //设定弹框标题
             title: String,
-            //设定按钮：1.确定，2.取消，3.确认取消
+            //设定按钮：1.确定，2.取消，3.确认&取消
             btnType: String,
             confirmText: {
                 type: String,

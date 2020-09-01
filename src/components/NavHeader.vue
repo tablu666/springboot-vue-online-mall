@@ -31,7 +31,7 @@
                                 <li class="category">
                                     <a href="" target="_blank">
                                         <div class="category-image">
-                                            <img src="/imgs/nav-img/nav-breaking-bad.jpg" alt=""/>
+                                            <img v-lazy="'/imgs/nav-img/nav-breaking-bad.jpg'" alt=""/>
                                         </div>
                                         <div class="category-name">绝命毒师 Breaking Bad</div>
                                     </a>
@@ -39,7 +39,7 @@
                                 <li class="category">
                                     <a href="" target="_blank">
                                         <div class="category-image">
-                                            <img src="/imgs/nav-img/nav-better-call-saul.png" alt=""/>
+                                            <img v-lazy="'/imgs/nav-img/nav-better-call-saul.png'" alt=""/>
                                         </div>
                                         <div class="category-name">风骚律师 Better Call Saul</div>
                                     </a>
@@ -47,7 +47,7 @@
                                 <li class="category">
                                     <a href="" target="_blank">
                                         <div class="category-image">
-                                            <img src="/imgs/nav-img/nav-the-walking-dead.jpg" alt=""/>
+                                            <img v-lazy="'/imgs/nav-img/nav-the-walking-dead.jpg'" alt=""/>
                                         </div>
                                         <div class="category-name">行尸走肉 The Walking Dead</div>
                                     </a>
@@ -55,7 +55,7 @@
                                 <li class="category">
                                     <a href="" target="_blank">
                                         <div class="category-image">
-                                            <img src="/imgs/nav-img/nav-shameless.jpg" alt=""/>
+                                            <img v-lazy="'/imgs/nav-img/nav-shameless.jpg'" alt=""/>
                                         </div>
                                         <div class="category-name">无耻之徒 Shameless</div>
                                     </a>
@@ -63,7 +63,7 @@
                                 <li class="category">
                                     <a href="" target="_blank">
                                         <div class="category-image">
-                                            <img src="/imgs/nav-img/nav-rick-and-morty.jpg" alt=""/>
+                                            <img v-lazy="'/imgs/nav-img/nav-rick-and-morty.jpg'" alt=""/>
                                         </div>
                                         <div class="category-name">瑞克和莫蒂 Rick And Morty</div>
                                     </a>
@@ -78,7 +78,7 @@
                                 <li class="product" v-for="(item, index) in productList" :key="index">
                                     <a v-bind:href="'/#/product/' + item.id" target="_blank">
                                         <div class="product-image">
-                                            <img :src="item.mainImage" :alt="item.subtitle"/>
+                                            <img v-lazy="item.mainImage" :alt="item.subtitle"/>
                                         </div>
                                         <div class="product-name">{{item.name}}</div>
                                         <div class="product-price">{{item.price | currency}}</div>

@@ -75,12 +75,12 @@
             </div>
             <div class="ads-box">
                 <a v-bind:href="'/#/product/' + item.id" v-for="(item, index) in adsList" v-bind:key="index">
-                    <img v-bind:src="item.img" alt="">
+                    <img v-lazy="item.img" alt="">
                 </a>
             </div>
             <div class="banner">
                 <a href="javascript:;">
-                    <img src="/imgs/banner-index.jpg" alt="美剧周边站 Dream And Passion">
+                    <img v-lazy="'/imgs/banner-index.jpg'" alt="美剧周边站 Dream And Passion">
                 </a>
             </div>
             <div class="product-box">
@@ -91,7 +91,7 @@
                             <span v-if="j%2===0" v-bind:class="{'new-product':j%2===0}">新品</span>
                             <span v-if="j%2!==0" v-bind:class="{'kill-product':j%2!==0}">秒杀</span>
                             <div class="item-img">
-                                <img :src="item.mainImage" alt="">
+                                <img v-lazy="item.mainImage" alt="">
                             </div>
                             <div class="item-info">
                                 <h3>{{item.name}}</h3>
