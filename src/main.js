@@ -29,7 +29,7 @@ axios.interceptors.response.use(function (response) {
 
 Vue.use(VueAxios, axios);
 Vue.use(VueLazyload,{
-   loading:'/imgs/loading-svg/loading-bars.svg'
+   loading:'/imgs/loading-svg/loading.svg'
 });
 Vue.config.productionTip = false;
 

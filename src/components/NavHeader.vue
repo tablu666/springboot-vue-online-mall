@@ -29,7 +29,7 @@
                         <div class="children">
                             <ul>
                                 <li class="category">
-                                    <a href="" target="_blank">
+                                    <a href="/#/category/100006" target="_blank">
                                         <div class="category-image">
                                             <img v-lazy="'/imgs/nav-img/nav-breaking-bad.jpg'" alt=""/>
                                         </div>
@@ -37,7 +37,7 @@
                                     </a>
                                 </li>
                                 <li class="category">
-                                    <a href="" target="_blank">
+                                    <a href="/#/category/100007" target="_blank">
                                         <div class="category-image">
                                             <img v-lazy="'/imgs/nav-img/nav-better-call-saul.png'" alt=""/>
                                         </div>
@@ -45,7 +45,7 @@
                                     </a>
                                 </li>
                                 <li class="category">
-                                    <a href="" target="_blank">
+                                    <a href="/#/category/100008" target="_blank">
                                         <div class="category-image">
                                             <img v-lazy="'/imgs/nav-img/nav-the-walking-dead.jpg'" alt=""/>
                                         </div>
@@ -53,7 +53,7 @@
                                     </a>
                                 </li>
                                 <li class="category">
-                                    <a href="" target="_blank">
+                                    <a href="/#/category/100009" target="_blank">
                                         <div class="category-image">
                                             <img v-lazy="'/imgs/nav-img/nav-shameless.jpg'" alt=""/>
                                         </div>
@@ -61,7 +61,7 @@
                                     </a>
                                 </li>
                                 <li class="category">
-                                    <a href="" target="_blank">
+                                    <a href="/#/category/100010" target="_blank">
                                         <div class="category-image">
                                             <img v-lazy="'/imgs/nav-img/nav-rick-and-morty.jpg'" alt=""/>
                                         </div>

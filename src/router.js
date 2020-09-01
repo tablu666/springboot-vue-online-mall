@@ -50,7 +50,7 @@ export default new Router({
                     name: 'register',
                     component: Register
                 }, {
-                    path: '/category',
+                    path: '/category/:id',
                     name: 'category',
                     component: Category
                 }
