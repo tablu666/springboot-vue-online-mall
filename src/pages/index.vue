@@ -83,13 +83,41 @@
                     <img src="/imgs/banner-index.jpg" alt="美剧周边站 Dream And Passion">
                 </a>
             </div>
-            <div class="product-box"></div>
+            <div class="product-box">
+                <h2>手机 Mobile</h2>
+                <div class="list-box">
+                    <div class="list" v-for="(arr, i) in phoneList" v-bind:key="i">
+                        <div class="item" v-for="(item, j) in arr" v-bind:key="j">
+                            <span v-if="j%2===0" v-bind:class="{'new-product':j%2===0}">新品</span>
+                            <span v-if="j%2!==0" v-bind:class="{'kill-product':j%2!==0}">秒杀</span>
+                            <div class="item-img">
+                                <img :src="item.mainImage" alt="">
+                            </div>
+                            <div class="item-info">
+                                <h3>{{item.name}}</h3>
+                                <p>{{item.subtitle}}</p>
+                                <p class="price">{{item.price}}元</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <service-bar></service-bar>
+        <modal title="系统提示"
+               confirm-text="查看购物车"
+               btn-type="1"
+               modal-type="middle"
+               v-bind:show-modal="true">
+            <template v-slot:body>
+                <p>商品添加成功！</p>
+            </template>
+        </modal>
     </div>
 </template>
 <script>
     import ServiceBar from "./../components/ServiceBar";
+    import Modal from "./../components/Modal";
     import {Swiper, SwiperSlide} from 'vue-awesome-swiper';
     import 'swiper/css/swiper.css';
 
@@ -98,7 +126,8 @@
         components: {
             Swiper,
             SwiperSlide,
-            ServiceBar
+            ServiceBar,
+            Modal
         },
         data() {
             return {
@@ -172,7 +201,8 @@
                         id: 5,
                         img: '/imgs/ads/ads-4.jpg'
                     },
-                ]
+                ],
+                phoneList: []
             }
         },
         mounted() {
@@ -180,6 +210,7 @@
             this.getMenuList2();
             this.getMenuList3();
             this.getMenuList4();
+            this.getPhoneList();
         },
         methods: {
             getMenuList() {
@@ -258,6 +289,19 @@
                         temp[i] = temp2;
                     }
                     this.menuList4 = temp;
+                });
+            },
+            getPhoneList() {
+                this.axios.get('/products', {
+                    params: {
+                        categoryId: 100012,
+                        pageSize: 8
+                    }
+                }).then((res) => {
+                    this.phoneList = [
+                        res.list.slice(0, 4),
+                        res.list.slice(4, 8)
+                    ];
                 });
             }
         }
@@ -383,6 +427,92 @@
                 img {
                     width: 1226px;
                     height: 130px;
+                }
+            }
+        }
+
+        .product-box {
+            padding: 15px 0 15px;
+
+            h2 {
+                font-size: $fontF;
+                height: 21px;
+                line-height: 21px;
+                color: $colorB;
+                margin-bottom: 15px;
+                margin-left: 15px;
+            }
+
+            .list-box {
+                .list {
+                    @include flex();
+                    width: 1226px;
+                    margin-bottom: 15px;
+
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
+
+                    .item {
+                        width: 296px;
+                        height: 310px;
+                        text-align: center;
+
+                        span {
+                            display: inline-block;
+                            width: 67px;
+                            height: 24px;
+                            line-height: 24px;
+                            font-size: 14px;
+                            color: #ffffff;
+
+                            &.new-product {
+                                background-color: #7ECF68;
+                            }
+
+                            &.kill-product {
+                                background-color: #E82626;
+                            }
+                        }
+
+                        .item-img {
+                            img {
+                                width: 100%;
+                                height: 195px;
+                            }
+
+                            margin-bottom: 10px;
+                        }
+
+                        .item-info {
+                            h3 {
+                                font-size: 14px;
+                                color: $colorB;
+                                line-height: 14px;
+                                font-weight: bold;
+                            }
+
+                            p {
+                                color: $colorD;
+                                line-height: 13px;
+                                margin: 6px auto 13px;
+                            }
+
+                            .price {
+                                color: $colorA;
+                                font-size: 14px;
+                                font-weight: bold;
+                                cursor: pointer;
+
+                                &:after {
+                                    @include backgroundImage(18px, 18px, '/imgs/icon-cart-hover.png');
+                                    content: ' ';
+                                    margin-left: 5px;
+                                    vertical-align: middle;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

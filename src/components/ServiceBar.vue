@@ -2,7 +2,7 @@
     <div class="service">
         <div class="container">
             <ul>
-                <li><span class="icon-amusement"></span>本站纯属娱乐 Non Profit</li>
+                <li><span class="icon-amusement"></span>纯属爱好 NO COMMERCIAL USE</li>
                 <li><span class="icon-deliver"></span>下单后100年发货</li>
                 <li><span class="icon-postage"></span>满99万包邮到火星</li>
                 <li><span class="icon-star"></span>star的你真好看！</li>
