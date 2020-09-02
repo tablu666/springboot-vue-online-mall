@@ -13,7 +13,20 @@
             }
         },
         mounted() {
+            this.getUser();
+            this.getCartCount();
+        },
+        methods:{
+            getUser() {
+                this.axios.get('/user/profile').then(()=>{
 
+                });
+            },
+            getCartCount() {
+                this.axios.get('/carts/products/sum').then(()=>{
+
+                });
+            }
         }
     }
 </script>
