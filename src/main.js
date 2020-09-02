@@ -23,6 +23,8 @@ axios.interceptors.response.use(function (response) {
         return res.data;
     } else if (res.status === 10) {
         window.location.href = '/#/login'
+    } else if (res.status === 1) {
+        alert(res.msg);
     } else {
         alert(res.msg);
         return Promise.reject();
