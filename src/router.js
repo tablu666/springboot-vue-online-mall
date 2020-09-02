@@ -47,10 +47,6 @@ export default new Router({
                     name: 'management',
                     component: Management
                 }, {
-                    path: '/register',
-                    name: 'register',
-                    component: Register
-                }, {
                     path: '/category/:id',
                     name: 'category',
                     component: Category
@@ -60,7 +56,12 @@ export default new Router({
         {
             path: '/login',
             name: 'login',
-            component: Login
+            component: Login,
+        },
+        {
+            path: '/register',
+            name: 'register',
+            component: Register
         },
         {
             path: '/cart',

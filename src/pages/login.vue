@@ -10,22 +10,25 @@
                         <span class="checked">账号登录</span><span class="separate-line">|</span><span>扫码登录</span>
                     </h3>
                     <div class="input">
-                        <input type="text" placeholder="请输入用户名">
+                        <input type="text" placeholder="请输入用户名" v-model="loginForm.username">
                     </div>
                     <div class="input">
-                        <input type="password" placeholder="请输入密码">
+                        <input type="password" placeholder="请输入密码" v-model="loginForm.password">
                     </div>
                     <div class="input">
-                        <input type="text" placeholder="点击图片更换验证码">
+                        <input type="text" placeholder="点击图片更换验证码" v-model="loginForm.code">
                     </div>
                     <div class="vc">
                         <img :src="vcUrl" @click="updateVerifyCode" alt="">
+                        <div class="remember">
+                            <span>保持登录</span><input type="checkbox" v-model="checked">
+                        </div>
                     </div>
                     <div class="btn-box">
-                        <a href="javascript:;" class="btn">登录</a>
+                        <a href="javascript:;" class="btn" @click="login">登录</a>
                     </div>
                     <div class="tips">
-                        <div class="register">注册成为本站会员</div>
+                        <div class="register" @click="register">注册成为本站[会员]</div>
                     </div>
                 </div>
             </div>
@@ -43,12 +46,36 @@
         },
         data() {
             return {
+                loginForm: {
+                    username: '',
+                    password: '',
+                    code: ''
+                },
+                checked: true,
+                userId: '',
+                res: {},
                 vcUrl: '/api/verifyCode?time=' + new Date()
             }
         },
         methods: {
             updateVerifyCode() {
                 this.vcUrl = '/api/verifyCode?time=' + new Date();
+            },
+            login() {
+                this.axios.post('/user/login', this.loginForm).then((user) => {
+                    if (user) {
+                        if (this.checked) {
+                            this.$cookie.set('userId', user.id, {expires: '1M'});
+                        }
+                        this.res = user;
+                        this.$router.push('/index');
+                    } else {
+                        this.vcUrl = '/api/verifyCode?time=' + new Date();
+                    }
+                });
+            },
+            register() {
+                this.$router.push('/register');
             }
         }
     }
@@ -115,12 +142,32 @@
                         }
                     }
 
+                    .vc {
+                        img {
+                            cursor: pointer;
+                        }
+
+                        .remember {
+                            margin-top: 10px;
+                            width: 348px;
+                            line-height: 30px;
+
+                            span {
+                                display: inline-block;
+                                color: #999999;
+                                font-weight: bold;
+                                font-size: 14px;
+                                margin-right: 5px;
+                            }
+                        }
+                    }
+
                     .btn-box {
 
                         .btn {
                             width: 100%;
                             line-height: 50px;
-                            margin-top: 10px;
+                            margin-top: 5px;
                             font-size: 16px;
                         }
                     }
@@ -133,7 +180,7 @@
                         cursor: pointer;
 
                         .register {
-                            color: #999999;
+                            color: red;
                             font-weight: bold;
                         }
                     }
