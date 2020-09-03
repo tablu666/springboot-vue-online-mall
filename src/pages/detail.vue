@@ -13,7 +13,8 @@
                     <div class="item-addr">
                         <i class="icon-loc"></i>
                         <div class="addr">中国 浙江省 Zhejiang China</div>
-                        <div class="stock">库存：{{product.stock}}</div>
+                        <div class="stock" v-if="product.stock < 10" style="color: red">库存：{{product.stock}}</div>
+                        <div class="stock" v-else>库存：{{product.stock}}</div>
                     </div>
                     <div class="item-version clearFix">
                         <h2>版本 Version</h2>
@@ -151,6 +152,7 @@
                     .stock {
                         margin-top: 15px;
                         color: $colorA;
+                        font-weight: bold;
                     }
                 }
 
