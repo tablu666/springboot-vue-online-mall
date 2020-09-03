@@ -2,7 +2,7 @@
     <div class="nav-bar" :class="{'is_fixed':isFixed}">
         <div class="container">
             <div class="product-title">
-                iPhone12 Ultra
+                {{title}}
             </div>
             <div class="product-param">
                 <a href="javascript:;">简介</a><span>|</span>
@@ -16,6 +16,9 @@
 <script>
     export default {
         name: 'nav-bar',
+        props: {
+            title: String
+        },
         data() {
             return {
                 isFixed: false
@@ -51,7 +54,6 @@
             position: fixed;
             top: 0;
             width: 100%;
-            box-shadow: 0 5px 5px $colorA;
         }
 
         .container {
