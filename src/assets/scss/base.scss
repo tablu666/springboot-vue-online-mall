@@ -5,8 +5,25 @@
   margin-right: auto;
 }
 
-input{
+input {
   outline: none;
   box-sizing: border-box;
   font-size: 14px;
+}
+
+.float-l {
+  float: left;
+}
+
+.float-r {
+  float: right;
+}
+
+.clearFix:before, .clearFix:after {
+  content: ' ';
+  display: table;
+}
+
+.clearFix:after {
+  clear: both;
 }

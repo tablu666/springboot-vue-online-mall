@@ -307,16 +307,16 @@
                     ];
                 });
             },
-            addToCart() {
-                this.showModal = true;
-                // this.axios.post('/carts',{
-                //     productId: productId,
-                //     selected: true
-                // }).then(()=>{
-                //
-                // }).catch(()=>{
-                //     this.showModal = true;
-                // });
+            addToCart(id) {
+                this.axios.post('/carts',{
+                    productId: id,
+                    selected: true
+                }).then((res)=>{
+                    this.showModal = true;
+                    this.$store.dispatch('saveCartCount', res.cartTotalQuantity);
+                }).catch(()=>{
+                    window.location.href = '/#/login'
+                });
             },
             goToCart() {
                 this.$router.push('/cart')

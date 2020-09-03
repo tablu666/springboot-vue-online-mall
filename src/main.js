@@ -24,14 +24,18 @@ axios.interceptors.response.use(function (response) {
     if (res.status === 0) {
         return res.data;
     } else if (res.status === 10) {
-        if (path !== '#/index') {
+        if (path !== '#/index'
+            && !path.startsWith('#/product')
+            && !path.startsWith('#/detail')
+            && !path.startsWith('#/category')) {
             window.location.href = '/#/login'
         }
+        return Promise.reject(res);
     } else if (res.status === 1) {
         alert(res.msg);
     } else {
         alert(res.msg);
-        return Promise.reject();
+        return Promise.reject(res);
     }
 });
 
