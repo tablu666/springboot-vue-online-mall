@@ -30,6 +30,9 @@
                     <div class="btn-box">
                         <a href="javascript:;" class="btn" @click="register">注册</a>
                     </div>
+                    <div class="tips">
+                        <div class="login" @click="login">已有会员？<span>直接登录</span></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -85,6 +88,9 @@
                 }
 
                 return true;
+            },
+            login() {
+                this.$router.push('/login');
             }
         }
     }
@@ -137,7 +143,7 @@
                         width: 348px;
                         height: 50px;
                         border: 1.5px solid #E5E5E5;
-                        margin-bottom: 50px;
+                        margin-bottom: 44px;
 
                         input {
                             width: 100%;
@@ -162,6 +168,22 @@
                             line-height: 50px;
                             margin-top: 5px;
                             font-size: 16px;
+                        }
+                    }
+
+                    .tips {
+                        margin-top: 14px;
+                        display: flex;
+                        justify-content: space-between;
+                        font-size: 14px;
+
+                        .login {
+                            cursor: pointer;
+                            color: green;
+
+                            span {
+                                font-weight: bold;
+                            }
                         }
                     }
                 }
