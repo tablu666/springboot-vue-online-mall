@@ -18,13 +18,13 @@
         },
         methods:{
             getUser() {
-                this.axios.get('/user/profile').then(()=>{
-
+                this.axios.get('/user/profile').then((user)=>{
+                    this.$store.dispatch('saveUsername', user.username);
                 });
             },
             getCartCount() {
-                this.axios.get('/carts/products/sum').then(()=>{
-
+                this.axios.get('/carts/products/sum').then((count)=>{
+                    this.$store.dispatch('saveCartCount', count);
                 });
             }
         }

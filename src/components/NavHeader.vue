@@ -14,7 +14,7 @@
                     <a href="javascript:;" v-if="!username" @click="login">登录</a>
                     <a href="javascript:;" v-if="username">我的订单</a>
                     <a href="javascript:;" v-if="!username" @click="register">注册</a>
-                    <a href="javascript:;" class="user-cart" @click="goToCart"><span class="icon-cart"></span>购物车</a>
+                    <a href="javascript:;" class="user-cart" @click="goToCart"><span class="icon-cart"></span>购物车({{cartCount}})</a>
                 </div>
             </div>
         </div>
@@ -107,8 +107,15 @@
         name: 'nav-header',
         data() {
             return {
-                username: '',
                 productList: []
+            }
+        },
+        computed: {
+            username() {
+                return this.$store.state.username;
+            },
+            cartCount() {
+                return this.$store.state.cartCount;
             }
         },
         filters: {
@@ -131,8 +138,8 @@
             },
             getProductList() {
                 this.axios.get('/products', {
-                    params:{
-                        pageSize:5
+                    params: {
+                        pageSize: 5
                     }
                 }).then((res) => {
                     this.productList = res.list;

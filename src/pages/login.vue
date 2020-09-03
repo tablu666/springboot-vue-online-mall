@@ -67,6 +67,7 @@
                         if (this.checked) {
                             this.$cookie.set('userId', user.id, {expires: '1M'});
                         }
+                        this.$store.dispatch('saveUsername', user.username);
                         this.res = user;
                         this.$router.push('/index');
                     } else {
