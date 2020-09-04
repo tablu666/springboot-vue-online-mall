@@ -2,7 +2,7 @@
     <div class="cart">
         <order-header title="我的购物车">
             <template v-slot:tip>
-                <span>温馨提示：虚构产品，下单即表示收货</span>
+                <span>温馨提示：各大商品美剧联名，早买早享受！</span>
             </template>
         </order-header>
         <div class="wrapper">
@@ -123,12 +123,13 @@
                 let selected = item.productSelected;
                 if (type == '-') {
                     if (quantity == 1) {
+                        this.$message.info("亲亲 无法购买0件！");
                         return;
                     }
                     quantity--;
                 } else if (type == '+') {
-                    if (quantity >= item.productStock) {
-                        alert("库存不足！");
+                    if (quantity == item.productStock) {
+                        this.$message.info("库存不足哟！");
                         return;
                     }
                     quantity++;
@@ -151,11 +152,12 @@
                     this.dataHandler(res);
                 });
                 this.showModal = false;
+                this.$message.success("删除成功！");
             },
             goToOrder() {
                 let notChecked = this.list.every(item => !item.productSelected);
                 if (notChecked) {
-                    alert("未选择商品！");
+                    this.$message.warning("未选择商品！");
                 } else {
                     this.$router.push('/order/confirm');
                 }
@@ -168,7 +170,7 @@
 
     .cart {
         .wrapper {
-            background-color: #F5F5F5;
+            background-color: #f6f9fa;
             padding-top: 30px;
             padding-bottom: 114px;
 

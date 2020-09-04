@@ -60,7 +60,7 @@
             register() {
                 if (this.preCheck()) {
                     this.axios.post('/user/register', this.registerForm).then(() => {
-                        alert('注册成功');
+                        this.$message.success("注册成功");
                         this.$router.push('/login');
                     });
                 }
@@ -69,21 +69,21 @@
                 let username = this.registerForm.username;
                 let regUser = /^[a-zA-Z0-9]{4,16}$/;
                 if (!regUser.test(username)) {
-                    alert("用户名格式有误！");
+                    this.$message.warning("用户名格式有误！");
                     return false;
                 }
 
                 let password = this.registerForm.password;
                 let regPass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[^]{3,25}$/;
                 if (!regPass.test(password)) {
-                    alert("密码格式有误！");
+                    this.$message.warning("密码格式有误！");
                     return false;
                 }
 
                 let email = this.registerForm.email;
                 let regEmail = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
                 if (!regEmail.test(email)) {
-                    alert("邮箱格式有误！");
+                    this.$message.warning("邮箱格式有误！");
                     return false;
                 }
 

@@ -4,6 +4,8 @@ import axios from 'axios'
 import VueAxios from "vue-axios";
 import VueLazyload from "vue-lazyload";
 import VueCookie from 'vue-cookie';
+import {Message} from "element-ui";
+import 'element-ui/lib/theme-chalk/index.css'
 import store from './store'
 import App from './App.vue'
 // import env from './env'
@@ -32,7 +34,7 @@ axios.interceptors.response.use(function (response) {
         }
         return Promise.reject(res);
     } else {
-        alert(res.msg);
+        Message.warning(res.msg);
         return Promise.reject(res);
     }
 });
@@ -42,6 +44,8 @@ Vue.use(VueCookie);
 Vue.use(VueLazyload, {
     loading: '/imgs/loading-svg/loading.svg'
 });
+Vue.component(Message.name, Message);
+Vue.prototype.$message = Message;
 Vue.config.productionTip = false;
 
 new Vue({
