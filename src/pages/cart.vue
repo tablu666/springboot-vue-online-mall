@@ -49,7 +49,7 @@
                     </div>
                     <div class="total float-r">
                         总计：<span>{{cartTotalPrice}}</span>元
-                        <a href="javascript:;" class="btn" @click="goToOrder">去支付</a>
+                        <a href="javascript:;" class="btn" @click="goToOrder">结算</a>
                     </div>
                 </div>
             </div>
@@ -117,9 +117,6 @@
                 this.cartTotalPrice = res.cartTotalPrice;
                 this.checkedCount = this.list.filter(item => item.productSelected).length;
             },
-            goToOrder() {
-                this.$router.push('/order/confirm');
-            },
             //更新购物车数量，控制单一商品选中状态
             updateCart(item, type) {
                 let quantity = item.quantity;
@@ -154,6 +151,14 @@
                     this.dataHandler(res);
                 });
                 this.showModal = false;
+            },
+            goToOrder() {
+                let notChecked = this.list.every(item => !item.productSelected);
+                if (notChecked) {
+                    alert("未选择商品！");
+                } else {
+                    this.$router.push('/order/confirm');
+                }
             }
         }
     }
