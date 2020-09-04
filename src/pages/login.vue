@@ -73,6 +73,8 @@
                     } else {
                         this.vcUrl = '/api/verifyCode?time=' + new Date();
                     }
+                }).catch(() => {
+                    this.vcUrl = '/api/verifyCode?time=' + new Date();
                 });
             },
             register() {
