@@ -12,6 +12,7 @@
                 <div class="top-bar-user">
                     <a href="javascript:;" v-if="username">{{username}}</a>
                     <a href="javascript:;" v-if="!username" @click="login">登录</a>
+                    <a href="javascript:;" v-if="username" @click="logout">退出</a>
                     <a href="javascript:;" v-if="username">我的订单</a>
                     <a href="javascript:;" v-if="!username" @click="register">注册</a>
                     <a href="javascript:;" class="user-cart" @click="goToCart"><span class="icon-cart"></span>购物车({{cartCount}})</a>
@@ -128,10 +129,22 @@
         },
         mounted() {
             this.getProductList();
+            let params = this.$route.params;
+            if (params && params.from === 'login') {
+                this.getCartCount();
+            }
         },
         methods: {
             login() {
                 this.$router.push('/login');
+            },
+            logout() {
+                this.axios.post('/user/logout').then(() => {
+                    this.$message.success("退出成功！");
+                    this.$cookie.set('userId', '', {expires: '-1'});
+                    this.$store.dispatch('saveUsername', '');
+                    this.$store.dispatch('saveCartCount', '0');
+                });
             },
             register() {
                 this.$router.push('/register');
@@ -151,6 +164,11 @@
                 } else {
                     this.$router.push('/cart');
                 }
+            },
+            getCartCount() {
+                this.axios.get('/carts/products/sum').then((count=0)=>{
+                    this.$store.dispatch('saveCartCount', count);
+                });
             }
         }
     }

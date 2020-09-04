@@ -69,7 +69,12 @@
                         }
                         this.$store.dispatch('saveUsername', user.username);
                         this.res = user;
-                        this.$router.push('/index');
+                        this.$router.push({
+                            name: 'index',
+                            params: {
+                                from: 'login'
+                            }
+                        });
                     } else {
                         this.vcUrl = '/api/verifyCode?time=' + new Date();
                     }
