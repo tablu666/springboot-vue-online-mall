@@ -31,8 +31,6 @@ axios.interceptors.response.use(function (response) {
             window.location.href = '/#/login'
         }
         return Promise.reject(res);
-    } else if (res.status === 1) {
-        alert(res.msg);
     } else {
         alert(res.msg);
         return Promise.reject(res);

@@ -146,7 +146,11 @@
                 })
             },
             goToCart() {
-                this.$router.push('/cart');
+                if (this.username === '') {
+                    window.location.href = '/#/login';
+                } else {
+                    this.$router.push('/cart');
+                }
             }
         }
     }
@@ -192,35 +196,6 @@
                 @include flex();
                 height: 112px;
                 position: relative;
-
-                .top-banner-logo {
-                    display: inline-block;
-                    width: 55px;
-                    height: 55px;
-                    background-color: $colorA;
-
-                    a {
-                        display: inline-block;
-                        width: 110px;
-                        height: 55px;
-
-                        &:before {
-                            content: " ";
-                            @include backgroundImage(55px, 55px, "/imgs/tv-logo.png", 55px);
-                            transition: margin .2s;
-                        }
-
-                        &:after {
-                            content: " ";
-                            @include backgroundImage(55px, 55px, "/imgs/tv-home.png", 55px);
-                        }
-
-                        &:hover:before {
-                            margin-left: -55px;
-                            transition: margin .2s;
-                        }
-                    }
-                }
 
                 .top-banner-menu {
                     display: inline-block;
