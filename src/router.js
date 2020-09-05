@@ -10,7 +10,6 @@ import Order from './pages/order'
 import OrderConfirm from './pages/orderConfirm'
 import OrderList from './pages/orderList'
 import OrderPayment from './pages/orderPayment'
-import VerifyCodePay from './pages/verifyCodePay'
 import Seller from './pages/seller'
 import Management from './pages/management'
 import Register from './pages/register'
@@ -85,10 +84,6 @@ export default new Router({
                     path: 'payment',
                     name: 'order-payment',
                     component: OrderPayment
-                }, {
-                    path: 'verifyCodePay',
-                    name: 'verify-code-pay',
-                    component: VerifyCodePay
                 }
             ]
         }
