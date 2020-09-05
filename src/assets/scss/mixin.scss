@@ -1,3 +1,5 @@
+@import "config.scss";
+
 @mixin flex($hov:space-between, $col:center) {
   display: flex;
   justify-content: $hov;
@@ -28,4 +30,13 @@
   height: $height;
   background: url($image) no-repeat center;
   background-size: contain;
+}
+
+@mixin height($height:0, $lineHeight:$height) {
+  height: $height;
+  line-height: $lineHeight;
+}
+
+@mixin border($bw:1px, $bc:$colorF, $bs:solid) {
+  border: $bw $bs $bc;
 }

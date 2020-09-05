@@ -14,12 +14,6 @@
         components: {
             NavFooter,
             ServiceBar
-        },
-        data() {
-            return {
-                title: '',
-                tip: '',
-            }
         }
     }
 </script>
