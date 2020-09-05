@@ -1,5 +1,10 @@
 <template>
     <div class="order-payment">
+        <order-header title="订单支付">
+            <template v-slot:tip>
+                <span>一经支付，概不退货</span>
+            </template>
+        </order-header>
         <div class="wrapper">
             <div class="container">
                 <div class="order-wrap">
@@ -62,9 +67,13 @@
     </div>
 </template>
 <script>
+    import OrderHeader from "../components/OrderHeader";
 
     export default {
         name: 'order-payment',
+        components: {
+            OrderHeader
+        },
         data() {
             return {
                 orderNo: this.$route.query.orderNo,
