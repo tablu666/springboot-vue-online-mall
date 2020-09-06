@@ -12,6 +12,7 @@ import OrderList from './pages/orderList'
 import OrderPayment from './pages/orderPayment'
 import Seller from './pages/seller'
 import Management from './pages/management'
+import Backend from './pages/backend'
 import Register from './pages/register'
 import Category from './pages/category'
 
@@ -41,14 +42,6 @@ export default new Router({
                     path: '/detail/:id',
                     name: 'detail',
                     component: Detail
-                }, {
-                    path: '/seller',
-                    name: 'seller',
-                    component: Seller
-                }, {
-                    path: '/management',
-                    name: 'management',
-                    component: Management
                 }, {
                     path: '/category/:id',
                     name: 'category',
@@ -88,6 +81,22 @@ export default new Router({
                     path: 'payment',
                     name: 'order-payment',
                     component: OrderPayment
+                }
+            ]
+        },
+        {
+            path: '/backend',
+            name: 'backend',
+            component: Backend,
+            children: [
+                {
+                    path: '/seller',
+                    name: 'seller',
+                    component: Seller
+                }, {
+                    path: '/management',
+                    name: 'management',
+                    component: Management
                 }
             ]
         }

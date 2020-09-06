@@ -47,6 +47,7 @@
                         </div>
                     </div>
                     <el-pagination
+                            v-if="total > 0"
                             class="pagination"
                             background
                             layout="prev, pager, next"

@@ -96,7 +96,7 @@
                 <div class="top-banner-search">
                     <div class="wrapper">
                         <input type="text" name="keyword">
-                        <a href="javascript:;"></a>
+                        <a href="javascript:;" @click="goToBackend"></a>
                     </div>
                 </div>
             </div>
@@ -175,6 +175,15 @@
                     window.location.href = '/#/login';
                 } else {
                     this.$router.push('/order/list');
+                }
+            },
+            goToBackend() {
+                if (this.username === '') {
+                    window.location.href = '/#/login';
+                } else if (this.username !== 'employee' && this.username !== 'management') {
+                    this.$message.warning("Sorry 仅限本站员工查看哦！");
+                } else {
+                    this.$router.push('/management');
                 }
             }
         }
@@ -378,8 +387,10 @@
                         }
 
                         a {
-                            @include backgroundImage(18px, 18px, "/imgs/icon-search.png");
-                            margin-left: 17px;
+                            @include backgroundImage(18px, 18px, "/imgs/icon-statistics.png");
+                            width: 36px;
+                            height: 36px;
+                            margin-left: 8px;
                         }
                     }
                 }
