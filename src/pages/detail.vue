@@ -142,7 +142,7 @@
                         position: absolute;
                         top: 27px;
                         left: 34px;
-                        @include backgroundImage(20px, 20px, '/imgs/detail/icon-loc.png');
+                        @include backgroundImage(20px, 20px, '/imgs/icon-loc.png');
                     }
 
                     .addr {

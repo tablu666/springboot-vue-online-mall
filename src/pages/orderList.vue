@@ -8,6 +8,7 @@
         <div class="wrapper">
             <div class="container">
                 <div class="order-box">
+                    <loading v-if="loading"></loading>
                     <div class="order" v-for="(order,index) in orderList" v-bind:key="index">
                         <div class="order-title">
                             <div class="item-info float-l">
@@ -45,6 +46,7 @@
                             </div>
                         </div>
                     </div>
+                    <no-data v-if="!loading && orderList.length == 0"></no-data>
                 </div>
             </div>
         </div>
@@ -52,16 +54,21 @@
 </template>
 <script>
     import OrderHeader from './../components/OrderHeader'
+    import Loading from "./../components/Loading";
+    import NoData from "./../components/NoData";
 
     export default {
         name: 'order-list',
         components: {
-            OrderHeader
+            OrderHeader,
+            Loading,
+            NoData
         },
         data() {
             //orderStatus: 订单状态:0-已取消-10-未付款，20-已付款，40-已发货，50-交易成功，60-交易关闭
             return {
                 orderList: [],
+                loading: true
             }
         },
         mounted() {
@@ -70,7 +77,10 @@
         methods: {
             getOrderList() {
                 this.axios.get('/orders').then((res) => {
+                    this.loading = false;
                     this.orderList = res.list;
+                }).catch(() => {
+                    this.loading = false;
                 });
             },
             mapOrderStatus(status) {
