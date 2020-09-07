@@ -180,7 +180,7 @@
             goToBackend() {
                 if (this.username === '') {
                     window.location.href = '/#/login';
-                } else if (this.username !== 'employee' && this.username !== 'management') {
+                } else if (this.username !== 'employee' && this.username !== 'manager') {
                     this.$message.warning("Sorry 仅限本站员工查看哦！");
                 } else {
                     this.$router.push('/management');

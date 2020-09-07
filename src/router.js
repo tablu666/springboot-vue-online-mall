@@ -13,6 +13,7 @@ import OrderPayment from './pages/orderPayment'
 import Seller from './pages/seller'
 import Management from './pages/management'
 import Backend from './pages/backend'
+import User from './pages/user'
 import Register from './pages/register'
 import Category from './pages/category'
 
@@ -97,6 +98,10 @@ export default new Router({
                     path: '/management',
                     name: 'management',
                     component: Management
+                }, {
+                    path: '/user',
+                    name: 'user',
+                    component: User
                 }
             ]
         }

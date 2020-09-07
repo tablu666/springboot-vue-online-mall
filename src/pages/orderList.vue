@@ -55,7 +55,11 @@
                             :total="total"
                             @current-change="handleChange">
                     </el-pagination>
-                    <no-data v-if="!loading && orderList.length == 0"></no-data>
+                    <no-data v-if="!loading && orderList.length == 0">
+                        <template slot="tips">
+                            <p>还没有记录哟，赶快去买！</p>
+                        </template>
+                    </no-data>
                 </div>
             </div>
         </div>

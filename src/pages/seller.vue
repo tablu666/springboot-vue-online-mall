@@ -47,7 +47,11 @@
                             :total="total"
                             @current-change="handleChange">
                     </el-pagination>
-                    <no-data v-if="!loading && orderList.length == 0"></no-data>
+                    <no-data v-if="!loading && orderList.length == 0">
+                        <template slot="tips">
+                            <p>{{msg}}</p>
+                        </template>
+                    </no-data>
                 </div>
             </div>
         </div>
@@ -71,7 +75,8 @@
                 loading: true,
                 pageSize: 5,
                 pageNum: 1,
-                total: 0
+                total: 0,
+                msg: ''
             }
         },
         mounted() {
@@ -79,17 +84,16 @@
         },
         methods: {
             getOrderList() {
-                this.axios.get('/seller', {
-                    params: {
-                        pageSize: this.pageSize,
-                        pageNum: this.pageNum
-                    }
+                this.axios.post('/seller', {
+                    pageSize: this.pageSize,
+                    pageNum: this.pageNum
                 }).then((res) => {
                     this.loading = false;
                     this.orderList = res.list;
                     this.total = res.total;
-                }).catch(() => {
+                }).catch((res) => {
                     this.loading = false;
+                    this.msg = res.msg;
                 });
             },
             mapOrderStatus(status) {

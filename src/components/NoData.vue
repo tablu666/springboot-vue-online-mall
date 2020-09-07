@@ -1,7 +1,7 @@
 <template>
     <div class="no-data">
         <img src="/imgs/no-data.png" alt="">
-        <p>还没有记录哟，赶快去买！</p>
+        <slot name="tips"></slot>
     </div>
 </template>
 <script>

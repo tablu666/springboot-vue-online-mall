@@ -6,15 +6,15 @@
                     <p>订单管理</p>
                     <img v-lazy="'/imgs/oms/oms-order.png'" alt="">
                 </a>
-                <a v-bind:href="'/#/seller'">
+                <a href="javascript:;" @click="giveTips">
                     <p>权限管理</p>
                     <img v-lazy="'/imgs/oms/oms-role.jpg'" alt="">
                 </a>
-                <a v-bind:href="'/#/seller'">
+                <a href="javascript:;" @click="giveTips">
                     <p>商品管理</p>
                     <img v-lazy="'/imgs/oms/oms-product.jpg'" alt="">
                 </a>
-                <a v-bind:href="'/#/seller'">
+                <a href="javascript:;" @click="showUserModal=true">
                     <p>用户管理</p>
                     <img v-lazy="'/imgs/oms/oms-user.jpg'" alt="">
                 </a>
@@ -23,10 +23,18 @@
         <modal title="系统提示"
                btn-type="1"
                :show-modal="showModal"
-               confirmText="去订单列表"
+               confirmText="订单统计"
                @cancel="showModal=false"
                @submit="goToOrderManagement">
             <template v-slot:body><p>查看本站所有订单数据？</p></template>
+        </modal>
+        <modal title="系统提示"
+               btn-type="1"
+               :show-modal="showUserModal"
+               confirmText="用户清单"
+               @cancel="showUserModal=false"
+               @submit="goToUserList">
+            <template v-slot:body><p>查看本站所有用户？</p></template>
         </modal>
     </div>
 </template>
@@ -41,16 +49,30 @@
         data() {
             return {
                 showModal: false,
+                showUserModal: false
             }
         },
         methods: {
             goToOrderManagement() {
-                let username = this.$store.state.username;
-                if (username !== 'employee' && username !== 'management') {
-                    this.$message.warning("Sorry 仅限本站员工查看哦！");
-                    return;
+                if (this.preCheck()) {
+                    this.$router.push('/seller');
                 }
-                this.$router.push('/seller');
+            },
+            goToUserList() {
+                if (this.preCheck()) {
+                    this.$router.push('/user');
+                }
+            },
+            preCheck() {
+                let username = this.$store.state.username;
+                if (username !== 'employee' && username !== 'manager') {
+                    this.$message.warning("Sorry 仅限本站员工查看哦！");
+                    return false;
+                }
+                return true;
+            },
+            giveTips() {
+                this.$message.info("该功能暂未开放!");
             }
         }
     }
