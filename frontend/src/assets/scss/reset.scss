@@ -1,0 +1,29 @@
+body, div, p, h1, h2, h3, h4, h5, h6, ul, li, dl, dt, a, input, button, textarea, select {
+  margin: 0;
+  padding: 0;
+  outline: none;
+}
+
+html, body {
+  font-family: -apple-system, BlinkMacSystemFont, Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei, sans-serif;
+  color: #505050;
+  background-color: #ffffff;
+  min-width: 1226px;
+  font-size: 12px;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul, li {
+  list-style: none;
+}
+
+input {
+  font: normal;
+}
+
+input:focus, a:focus {
+  outline: none;
+}
