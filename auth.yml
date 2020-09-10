@@ -1,0 +1,11 @@
+CUSTOMER:
+    username: jimmy
+    password: 123
+
+EMPLOYEE:
+    username: employee
+    password: 123
+    
+MANAGER:
+    username: manager
+    password: root
