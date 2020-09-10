@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tablu.mall.dao.UserRoleMapper">
+  <resultMap id="BaseResultMap" type="com.tablu.mall.pojo.UserRoleKey">
+    <id column="uid" jdbcType="INTEGER" property="uid" />
+    <id column="rid" jdbcType="INTEGER" property="rid" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="com.tablu.mall.pojo.UserRoleKey">
+    delete from mall_user_role
+    where uid = #{uid,jdbcType=INTEGER}
+      and rid = #{rid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.tablu.mall.pojo.UserRoleKey">
+    insert into mall_user_role (uid, rid)
+    values (#{uid,jdbcType=INTEGER}, #{rid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tablu.mall.pojo.UserRoleKey">
+    insert into mall_user_role
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        uid,
+      </if>
+      <if test="rid != null">
+        rid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uid != null">
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="rid != null">
+        #{rid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
