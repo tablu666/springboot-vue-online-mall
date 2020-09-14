@@ -2,7 +2,7 @@
 
 #### A full-stack web application using Spring boot and Vue Cli.
 >This is an online shopping application with frontend and backend separated which is mainly developed for consumers, it also includes simple order & user management backend services.
-The frontend calls the backend API and performs data interaction through json.
+The frontend calls the backend API and performs data interaction through JSON.
 
 #### Live Demo: [https://tvmall-tablu.herokuapp.com/](https://tvmall-tablu.herokuapp.com/)
 
