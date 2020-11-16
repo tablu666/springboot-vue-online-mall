@@ -7,7 +7,7 @@ The frontend calls the backend API and performs data interaction through JSON.
 #### Live Demo: [https://tvmall-tablu.herokuapp.com/](https://tvmall-tablu.herokuapp.com/)
 
 ## Screenshot
-![](https://github.com/tablu666/springboot-vue-online-mall/blob/master/screenshot/index.png)
+![](https://github.com/tablu666/springboot-vue-online-mall/blob/master/screenshot/index-login.png)
 
 ![](https://github.com/tablu666/springboot-vue-online-mall/blob/master/screenshot/cart.jpg)
 
